@@ -57,7 +57,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~accountDetailsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/AccountDetails200Response}
      */
-    accountDetails(opts, callback) {
+    accountDetails(callback, opts) {
       opts = opts || {};
       let postBody = null;
 
@@ -109,7 +109,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~editImageGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    editImageGet(templateId, opts, callback) {
+    editImageGet(templateId, callback, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'templateId' is set
@@ -168,7 +168,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~editImagePostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    editImagePost(templateId, opts, callback) {
+    editImagePost(templateId, callback, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'templateId' is set
@@ -228,7 +228,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~instantBackgroundGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    instantBackgroundGet(imageUrl, prompt, opts, callback) {
+    instantBackgroundGet(imageUrl, prompt, callback, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'imageUrl' is set
@@ -294,7 +294,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~instantBackgroundPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    instantBackgroundPost(prompt, opts, callback) {
+    instantBackgroundPost(prompt, callback, opts) {
       opts = opts || {};
       let postBody = null;
       // verify the required parameter 'prompt' is set
@@ -357,7 +357,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~removeBackgroundCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    removeBackground(opts, callback) {
+    removeBackground(callback, opts) {
       opts = opts || {};
       let postBody = null;
 
@@ -437,7 +437,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~v2EditGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    v2EditGet(opts, callback) {
+    v2EditGet(callback, opts) {
       opts = opts || {};
       let postBody = null;
 
@@ -537,7 +537,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~v2EditPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    v2EditPost(opts, callback) {
+    v2EditPost(callback, opts) {
       opts = opts || {};
       let postBody = null;
 
