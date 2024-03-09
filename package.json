@@ -1,6 +1,6 @@
 {
   "name": "@wowandy/photo_room_client_api_js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The power of PhotoRoom, automated.",
   "license": "MIT",
   "main": "dist/index.js",

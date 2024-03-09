@@ -14,15 +14,15 @@
 
 import ApiClient from "../ApiClient";
 import AccountDetails200Response from '../model/AccountDetails200Response';
-import EditImageBadRequest from '../model/EditImageBadRequest';
-import FieldMissingError from '../model/FieldMissingError';
-import FieldMissingError1 from '../model/FieldMissingError1';
-import FieldMissingError2 from '../model/FieldMissingError2';
-import FieldMissingError3 from '../model/FieldMissingError3';
-import FieldMissingError4 from '../model/FieldMissingError4';
-import PaymentError from '../model/PaymentError';
-import RemoveBackground200Response from '../model/RemoveBackground200Response';
-import UnknownError from '../model/UnknownError';
+// import EditImageBadRequest from '../model/EditImageBadRequest';
+// import FieldMissingError from '../model/FieldMissingError';
+// import FieldMissingError1 from '../model/FieldMissingError1';
+// import FieldMissingError2 from '../model/FieldMissingError2';
+// import FieldMissingError3 from '../model/FieldMissingError3';
+// import FieldMissingError4 from '../model/FieldMissingError4';
+// import PaymentError from '../model/PaymentError';
+// import RemoveBackground200Response from '../model/RemoveBackground200Response';
+// import UnknownError from '../model/UnknownError';
 
 /**
 * Default service.
@@ -56,6 +56,7 @@ export default class DefaultApi {
      * Get current account details, including remaining credits balance and monthly quota
      * @param {module:api/DefaultApi~accountDetailsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/AccountDetails200Response}
+     * @param {Object} opts Optional parameters
      */
     accountDetails(callback, opts) {
       opts = opts || {};
@@ -103,9 +104,9 @@ export default class DefaultApi {
      * Render an image using a template. A detailed tutorial is available [here](https://www.photoroom.com/api/docs/image-editing-api-documentation)
      * @param {String} templateId 
      * @param {Object} opts Optional parameters
-     * @param {String} [apiKey] 
-     * @param {String} [imageUrl] 
-     * @param {String} [conceptUrl] 
+     * @param {String} [opts.apiKey]
+     * @param {String} [opts.imageUrl]
+     * @param {String} [opts.conceptUrl]
      * @param {module:api/DefaultApi~editImageGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -163,8 +164,8 @@ export default class DefaultApi {
      * Render an image using a template. A detailed tutorial is available [here](https://www.photoroom.com/api/docs/image-editing-api-documentation)
      * @param {String} templateId The ID of the template to render
      * @param {Object} opts Optional parameters
-     * @param {File} [imageFile] The image file to render
-     * @param {String} [imageUrl] Deprecated, use `imageFile` instead.
+     * @param {File} [opts.imageFile] The image file to render
+     * @param {String} [opts.imageUrl] Deprecated, use `imageFile` instead.
      * @param {module:api/DefaultApi~editImagePostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -217,14 +218,13 @@ export default class DefaultApi {
      */
 
     /**
-     * [BETA] Generate Background
-     * Generate background for an image given a prompt
+     * [BETA] Generate Background for an image given a prompt
      * @param {String} imageUrl 
      * @param {String} prompt 
      * @param {Object} opts Optional parameters
-     * @param {String} [apiKey] 
-     * @param {String} [negativePrompt] 
-     * @param {String} [seed] 
+     * @param {String} [opts.apiKey]
+     * @param {String} [opts.negativePrompt]
+     * @param {String} [opts.seed]
      * @param {module:api/DefaultApi~instantBackgroundGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -283,14 +283,13 @@ export default class DefaultApi {
      */
 
     /**
-     * [BETA] Generate Background
-     * Generate background for an image given a prompt
+     * [BETA] Generate background for an image given a prompt
      * @param {String} prompt The prompt to generate the background
      * @param {Object} opts Optional parameters
-     * @param {File} [imageFile] The image file to render
-     * @param {String} [imageUrl] Deprecated, use `imageFile` instead.
-     * @param {String} [negativePrompt] Use it to guide the AI in avoiding these elements during the background generation process
-     * @param {String} [seed] Seed used to generate the background. Can be used to get similar looking results for the same prompt
+     * @param {File} [opts.imageFile] The image file to render
+     * @param {String} [opts.imageUrl] Deprecated, use `imageFile` instead.
+     * @param {String} [opts.negativePrompt] Use it to guide the AI in avoiding these elements during the background generation process
+     * @param {String} [opts.seed] Seed used to generate the background. Can be used to get similar looking results for the same prompt
      * @param {module:api/DefaultApi~instantBackgroundPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -345,15 +344,14 @@ export default class DefaultApi {
      */
 
     /**
-     * Remove Background
      * Remove background from an image
      * @param {Object} opts Optional parameters
-     * @param {File} [imageFile] The image file to render
-     * @param {module:model/String} [format = 'png')] The format of the resulting image
-     * @param {module:model/String} [channels = 'rgba')] The channels of the resulting image
-     * @param {String} [bgColor] The background color of the resulting image. Can be a hex code (`#FF00FF`) or a HTML color (`red`, `green`, etc.)
-     * @param {module:model/String} [size = 'full')] Will resize the output to the specified size. Can be `preview` (0.25 Megapixels), `medium` (1.5 MP), `hd` (4 MP) or `full` (36 MP, can be slower for large images). Useful for mobile apps that need smaller images. Setting preview uses 0.25 credit
-     * @param {module:model/String} [crop = 'false')] If `true`, the image returned is cropped to the cutout border. Transparent pixels are removed from the border
+     * @param {File} [opts.mageFile] The image file to render
+     * @param {String} [opts.format = 'png')] The format of the resulting image
+     * @param {String} [opts.channels = 'rgba')] The channels of the resulting image
+     * @param {String} [opts.bgColor] The background color of the resulting image. Can be a hex code (`#FF00FF`) or a HTML color (`red`, `green`, etc.)
+     * @param {String} [opts.size = 'full')] Will resize the output to the specified size. Can be `preview` (0.25 Megapixels), `medium` (1.5 MP), `hd` (4 MP) or `full` (36 MP, can be slower for large images). Useful for mobile apps that need smaller images. Setting preview uses 0.25 credit
+     * @param {String} [opts.crop = 'false')] If `true`, the image returned is cropped to the cutout border. Transparent pixels are removed from the border
      * @param {module:api/DefaultApi~removeBackgroundCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -408,32 +406,32 @@ export default class DefaultApi {
      * [BETA] Edit Image v2
      * This endpoint processes an image, removing the background if specified, and applies various transformations such as scaling, padding, and margin adjustments. It accepts URL input for the image. The output size, background color or image, and other parameters can be customized.
      * @param {Object} opts Optional parameters
-     * @param {String} [backgroundColor = 'transparent')] Color of the background. If omitted, background will be transparent unless `background.imageUrl` or `background.imageFile` is provided. Can be a hex color without the hash sign (example: `FF0000`, `FFF`, `FF0000EE`) or color name (examples: `red`, `blue`)  Can't be provided if `removeBackground` is set to `false`
-     * @param {String} [backgroundImageUrl] URL of the image to use as a background. The GET endpoint accepts `background.imageUrl` only. In the POST endpoint, you can specify either `background.imageUrl` or `background.imageFile`, but not both. If `background.imageUrl` is provided, neither `background.imageFile` nor `background.prompt` can be provided, and vice versa.  Can't be provided if `removeBackground` is set to `false`
-     * @param {String} [backgroundNegativePrompt] A negative prompt to use for guiding the background generation process; If provided, the generation algorithm will try to avoid properties listed in the negativePrompt.
-     * @param {String} [backgroundPrompt] Prompt to use for guiding the background generation process.
-     * @param {module:model/String} [backgroundScaling = 'fill')] Whether the background should fit or fill (default) the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `background.imageUrl` or `background.imageFile` is provided
-     * @param {Number} [backgroundSeed] Seed used to generate the background. Can be used to get similar looking results for the same prompt.
-     * @param {Boolean} [ignorePaddingAndSnapOnCroppedSides = true)] If set to `true` (default), cropped sides of the subject will snap to the edges For instance, for a portrait image cropped below the elbows, the subject will be aligned at the bottom even if a bottom padding is provided (but it will still respect bottom margin)  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
-     * @param {String} [imageUrl] URL of the main image used by the API. The GET endpoint accepts `imageUrl` only. In the POST endpoint, you can specify either `imageUrl` or `imageFile`, but not both. If `imageUrl` is provided, `imageFile` can't be provided and vice versa.
-     * @param {module:model/String} [lightingMode] Lighting mode to use on the main image used by the API. If set to `ai.auto`, the lighting will be automatically adjusted
-     * @param {Number} [margin = 0)] [Advanced] Margin around the subject. Expressed in a ratio of the output image size. Unlike `padding`, margin is never ignored even on cropped sides of the subject. (See positioning section of the documentation for more information)
-     * @param {Number} [marginBottom] [Advanced] Bottom Margin, overrides margin argument on the Bottom side if provided
-     * @param {Number} [marginLeft] [Advanced] Left Margin, overrides margin argument on the left side
-     * @param {Number} [marginRight] [Advanced] Right Margin, overrides margin argument on the right side if provided
-     * @param {Number} [marginTop] [Advanced] Top Margin, overrides margin argument on the Top side if provided
-     * @param {Number} [maxHeight] Maximum output height. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: redimensioning while keeping the aspect ratio
-     * @param {Number} [maxWidth] Maximum output width. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: resizing an image while keeping the aspect ratio
-     * @param {String} [outputSize = 'originalImage')] Output size of the image. In the form of either: - `widthxheight` for a custom size (example: `200x400`) - `originalImage` to keep the original image dimensions - `croppedSubject` to use the size of the foreground dimensions after cropping around it
-     * @param {Number} [padding = 0)] Padding around the subject. Unlike `margin`, it will be ignored on cropped sides of the subject if the option is enabled Expressed in a ratio of the size of the document, minus margins (similar to CSS) (See positioning section of the documentation for more information)
-     * @param {Number} [paddingBottom] Bottom Padding, overrides padding argument on the Bottom side if provided
-     * @param {Number} [paddingLeft] Left Padding, overrides padding argument on the left side
-     * @param {Number} [paddingRight] Right Padding, overrides padding argument on the right side if provided
-     * @param {Number} [paddingTop] Top Padding, overrides padding argument on the Top side if provided
-     * @param {module:model/String} [referenceBox = 'subjectBox')] [Advanced] `subjectBox` by default. When set to `originalImage`, the padding / margin will be around the original image and not the cropped subject.  It can lead to the subject disappearing when scaling is set to 'fill', for instance if the subject is on the left of a landscape image and outputSize is a square.  Most use cases don't require this option. It is useful if you'd like to maintain subject positioning in the original image.  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
-     * @param {Boolean} [removeBackground = true)] If enabled (default), the background of the image will be removed using PhotoRoom's award-winning algorithm
-     * @param {module:model/String} [scaling = 'fit')] Whether the subject should fit (default) or fill the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `imageUrl` or `imageFile` is provided
-     * @param {module:model/String} [shadowMode] Shadow generation mode to use on the main image used by the API. If set to `ai.soft`, a soft shadow will be generated If set to `ai.hard`, a hard shadow will be generated If set to `ai.floating`, a floating shadow will be generated
+     * @param {String} [opts.backgroundColor = 'transparent')] Color of the background. If omitted, background will be transparent unless `background.imageUrl` or `background.imageFile` is provided. Can be a hex color without the hash sign (example: `FF0000`, `FFF`, `FF0000EE`) or color name (examples: `red`, `blue`)  Can't be provided if `removeBackground` is set to `false`
+     * @param {String} [opts.backgroundImageUrl] URL of the image to use as a background. The GET endpoint accepts `background.imageUrl` only. In the POST endpoint, you can specify either `background.imageUrl` or `background.imageFile`, but not both. If `background.imageUrl` is provided, neither `background.imageFile` nor `background.prompt` can be provided, and vice versa.  Can't be provided if `removeBackground` is set to `false`
+     * @param {String} [opts.backgroundNegativePrompt] A negative prompt to use for guiding the background generation process; If provided, the generation algorithm will try to avoid properties listed in the negativePrompt.
+     * @param {String} [opts.backgroundPrompt] Prompt to use for guiding the background generation process.
+     * @param {String} [opts.backgroundScaling = 'fill')] Whether the background should fit or fill (default) the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `background.imageUrl` or `background.imageFile` is provided
+     * @param {Number} [opts.backgroundSeed] Seed used to generate the background. Can be used to get similar looking results for the same prompt.
+     * @param {Boolean} [opts.ignorePaddingAndSnapOnCroppedSides = true)] If set to `true` (default), cropped sides of the subject will snap to the edges For instance, for a portrait image cropped below the elbows, the subject will be aligned at the bottom even if a bottom padding is provided (but it will still respect bottom margin)  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
+     * @param {String} [opts.imageUrl] URL of the main image used by the API. The GET endpoint accepts `imageUrl` only. In the POST endpoint, you can specify either `imageUrl` or `imageFile`, but not both. If `imageUrl` is provided, `imageFile` can't be provided and vice versa.
+     * @param {String} [opts.lightingMode] Lighting mode to use on the main image used by the API. If set to `ai.auto`, the lighting will be automatically adjusted
+     * @param {Number} [opts.margin = 0)] [Advanced] Margin around the subject. Expressed in a ratio of the output image size. Unlike `padding`, margin is never ignored even on cropped sides of the subject. (See positioning section of the documentation for more information)
+     * @param {Number} [opts.marginBottom] [Advanced] Bottom Margin, overrides margin argument on the Bottom side if provided
+     * @param {Number} [opts.marginLeft] [Advanced] Left Margin, overrides margin argument on the left side
+     * @param {Number} [opts.marginRight] [Advanced] Right Margin, overrides margin argument on the right side if provided
+     * @param {Number} [opts.marginTop] [Advanced] Top Margin, overrides margin argument on the Top side if provided
+     * @param {Number} [opts.maxHeight] Maximum output height. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: redimensioning while keeping the aspect ratio
+     * @param {Number} [opts.maxWidth] Maximum output width. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: resizing an image while keeping the aspect ratio
+     * @param {String} [opts.outputSize = 'originalImage')] Output size of the image. In the form of either: - `widthxheight` for a custom size (example: `200x400`) - `originalImage` to keep the original image dimensions - `croppedSubject` to use the size of the foreground dimensions after cropping around it
+     * @param {Number} [opts.padding = 0)] Padding around the subject. Unlike `margin`, it will be ignored on cropped sides of the subject if the option is enabled Expressed in a ratio of the size of the document, minus margins (similar to CSS) (See positioning section of the documentation for more information)
+     * @param {Number} [opts.paddingBottom] Bottom Padding, overrides padding argument on the Bottom side if provided
+     * @param {Number} [opts.paddingLeft] Left Padding, overrides padding argument on the left side
+     * @param {Number} [opts.paddingRight] Right Padding, overrides padding argument on the right side if provided
+     * @param {Number} [opts.paddingTop] Top Padding, overrides padding argument on the Top side if provided
+     * @param {String} [opts.referenceBox = 'subjectBox')] [Advanced] `subjectBox` by default. When set to `originalImage`, the padding / margin will be around the original image and not the cropped subject.  It can lead to the subject disappearing when scaling is set to 'fill', for instance if the subject is on the left of a landscape image and outputSize is a square.  Most use cases don't require this option. It is useful if you'd like to maintain subject positioning in the original image.  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
+     * @param {Boolean} [opts.removeBackground = true)] If enabled (default), the background of the image will be removed using PhotoRoom's award-winning algorithm
+     * @param {String} [opts.scaling = 'fit')] Whether the subject should fit (default) or fill the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `imageUrl` or `imageFile` is provided
+     * @param {String} [opts.shadowMode] Shadow generation mode to use on the main image used by the API. If set to `ai.soft`, a soft shadow will be generated If set to `ai.hard`, a hard shadow will be generated If set to `ai.floating`, a floating shadow will be generated
      * @param {module:api/DefaultApi~v2EditGetCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -508,32 +506,32 @@ export default class DefaultApi {
      * [BETA] Edit Image v2
      * This endpoint processes an image, removing the background if specified, and applies various transformations such as scaling, padding, and margin adjustments. It accepts binary data for the image. The output size, background color or image, and other parameters can be customized.
      * @param {Object} opts Optional parameters
-     * @param {String} [backgroundColor = 'transparent')] Color of the background. If omitted, background will be transparent unless `background.imageUrl` or `background.imageFile` is provided. Can be a hex color without the hash sign (example: `FF0000`, `FFF`, `FF0000EE`) or color name (examples: `red`, `blue`)  Can't be provided if `removeBackground` is set to `false`
-     * @param {String} [backgroundImageUrl] URL of the image to use as a background. The GET endpoint accepts `background.imageUrl` only. In the POST endpoint, you can specify either `background.imageUrl` or `background.imageFile`, but not both. If `background.imageUrl` is provided, neither `background.imageFile` nor `background.prompt` can be provided, and vice versa.  Can't be provided if `removeBackground` is set to `false`
-     * @param {String} [backgroundNegativePrompt] A negative prompt to use for guiding the background generation process; If provided, the generation algorithm will try to avoid properties listed in the negativePrompt.
-     * @param {String} [backgroundPrompt] Prompt to use for guiding the background generation process.
-     * @param {module:model/String} [backgroundScaling = 'fill')] Whether the background should fit or fill (default) the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `background.imageUrl` or `background.imageFile` is provided
-     * @param {Number} [backgroundSeed] Seed used to generate the background. Can be used to get similar looking results for the same prompt.
-     * @param {Boolean} [ignorePaddingAndSnapOnCroppedSides = true)] If set to `true` (default), cropped sides of the subject will snap to the edges For instance, for a portrait image cropped below the elbows, the subject will be aligned at the bottom even if a bottom padding is provided (but it will still respect bottom margin)  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
-     * @param {File} [imageFile] Bytes of the main image used by the API. Only available in the POST request  If provided, `imageUrl` can't be provided
-     * @param {module:model/String} [lightingMode] Lighting mode to use on the main image used by the API. If set to `ai.auto`, the lighting will be automatically adjusted
-     * @param {Number} [margin = 0)] [Advanced] Margin around the subject. Expressed in a ratio of the output image size. Unlike `padding`, margin is never ignored even on cropped sides of the subject. (See positioning section of the documentation for more information)
-     * @param {Number} [marginBottom] [Advanced] Bottom Margin, overrides margin argument on the Bottom side if provided
-     * @param {Number} [marginLeft] [Advanced] Left Margin, overrides margin argument on the left side
-     * @param {Number} [marginRight] [Advanced] Right Margin, overrides margin argument on the right side if provided
-     * @param {Number} [marginTop] [Advanced] Top Margin, overrides margin argument on the Top side if provided
-     * @param {Number} [maxHeight] Maximum output height. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: redimensioning while keeping the aspect ratio
-     * @param {Number} [maxWidth] Maximum output width. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: resizing an image while keeping the aspect ratio
-     * @param {String} [outputSize = 'originalImage')] Output size of the image. In the form of either: - `widthxheight` for a custom size (example: `200x400`) - `originalImage` to keep the original image dimensions - `croppedSubject` to use the size of the foreground dimensions after cropping around it
-     * @param {Number} [padding = 0)] Padding around the subject. Unlike `margin`, it will be ignored on cropped sides of the subject if the option is enabled Expressed in a ratio of the size of the document, minus margins (similar to CSS) (See positioning section of the documentation for more information)
-     * @param {Number} [paddingBottom] Bottom Padding, overrides padding argument on the Bottom side if provided
-     * @param {Number} [paddingLeft] Left Padding, overrides padding argument on the left side
-     * @param {Number} [paddingRight] Right Padding, overrides padding argument on the right side if provided
-     * @param {Number} [paddingTop] Top Padding, overrides padding argument on the Top side if provided
-     * @param {module:model/String} [referenceBox = 'subjectBox')] [Advanced] `subjectBox` by default. When set to `originalImage`, the padding / margin will be around the original image and not the cropped subject.  It can lead to the subject disappearing when scaling is set to 'fill', for instance if the subject is on the left of a landscape image and outputSize is a square.  Most use cases don't require this option. It is useful if you'd like to maintain subject positioning in the original image.  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
-     * @param {Boolean} [removeBackground = true)] If enabled (default), the background of the image will be removed using PhotoRoom's award-winning algorithm
-     * @param {module:model/String} [scaling = 'fit')] Whether the subject should fit (default) or fill the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `imageUrl` or `imageFile` is provided
-     * @param {module:model/String} [shadowMode] Shadow generation mode to use on the main image used by the API. If set to `ai.soft`, a soft shadow will be generated If set to `ai.hard`, a hard shadow will be generated If set to `ai.floating`, a floating shadow will be generated
+     * @param {String} [opts.backgroundColor = 'transparent')] Color of the background. If omitted, background will be transparent unless `background.imageUrl` or `background.imageFile` is provided. Can be a hex color without the hash sign (example: `FF0000`, `FFF`, `FF0000EE`) or color name (examples: `red`, `blue`)  Can't be provided if `removeBackground` is set to `false`
+     * @param {String} [opts.backgroundImageUrl] URL of the image to use as a background. The GET endpoint accepts `background.imageUrl` only. In the POST endpoint, you can specify either `background.imageUrl` or `background.imageFile`, but not both. If `background.imageUrl` is provided, neither `background.imageFile` nor `background.prompt` can be provided, and vice versa.  Can't be provided if `removeBackground` is set to `false`
+     * @param {String} [opts.backgroundNegativePrompt] A negative prompt to use for guiding the background generation process; If provided, the generation algorithm will try to avoid properties listed in the negativePrompt.
+     * @param {String} [opts.backgroundPrompt] Prompt to use for guiding the background generation process.
+     * @param {String} [opts.backgroundScaling = 'fill')] Whether the background should fit or fill (default) the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `background.imageUrl` or `background.imageFile` is provided
+     * @param {Number} [opts.backgroundSeed] Seed used to generate the background. Can be used to get similar looking results for the same prompt.
+     * @param {Boolean} [opts.ignorePaddingAndSnapOnCroppedSides = true)] If set to `true` (default), cropped sides of the subject will snap to the edges For instance, for a portrait image cropped below the elbows, the subject will be aligned at the bottom even if a bottom padding is provided (but it will still respect bottom margin)  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
+     * @param {File} [opts.imageFile] Bytes of the main image used by the API. Only available in the POST request  If provided, `imageUrl` can't be provided
+     * @param {String} [opts.lightingMode] Lighting mode to use on the main image used by the API. If set to `ai.auto`, the lighting will be automatically adjusted
+     * @param {Number} [opts.margin = 0)] [Advanced] Margin around the subject. Expressed in a ratio of the output image size. Unlike `padding`, margin is never ignored even on cropped sides of the subject. (See positioning section of the documentation for more information)
+     * @param {Number} [opts.marginBottom] [Advanced] Bottom Margin, overrides margin argument on the Bottom side if provided
+     * @param {Number} [opts.marginLeft] [Advanced] Left Margin, overrides margin argument on the left side
+     * @param {Number} [opts.marginRight] [Advanced] Right Margin, overrides margin argument on the right side if provided
+     * @param {Number} [opts.marginTop] [Advanced] Top Margin, overrides margin argument on the Top side if provided
+     * @param {Number} [opts.maxHeight] Maximum output height. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: redimensioning while keeping the aspect ratio
+     * @param {Number} [opts.maxWidth] Maximum output width. Can only be provided if `outputSize` is `originalImage` or `croppedSubject`. Useful for: resizing an image while keeping the aspect ratio
+     * @param {String} [opts.outputSize = 'originalImage')] Output size of the image. In the form of either: - `widthxheight` for a custom size (example: `200x400`) - `originalImage` to keep the original image dimensions - `croppedSubject` to use the size of the foreground dimensions after cropping around it
+     * @param {Number} [opts.padding = 0)] Padding around the subject. Unlike `margin`, it will be ignored on cropped sides of the subject if the option is enabled Expressed in a ratio of the size of the document, minus margins (similar to CSS) (See positioning section of the documentation for more information)
+     * @param {Number} [opts.paddingBottom] Bottom Padding, overrides padding argument on the Bottom side if provided
+     * @param {Number} [opts.paddingLeft] Left Padding, overrides padding argument on the left side
+     * @param {Number} [opts.paddingRight] Right Padding, overrides padding argument on the right side if provided
+     * @param {Number} [opts.paddingTop] Top Padding, overrides padding argument on the Top side if provided
+     * @param {String} [opts.referenceBox = 'subjectBox')] [Advanced] `subjectBox` by default. When set to `originalImage`, the padding / margin will be around the original image and not the cropped subject.  It can lead to the subject disappearing when scaling is set to 'fill', for instance if the subject is on the left of a landscape image and outputSize is a square.  Most use cases don't require this option. It is useful if you'd like to maintain subject positioning in the original image.  Can't be provided if `removeBackground` is set to `false`  (See positioning section of the documentation for more information)
+     * @param {Boolean} [opts.removeBackground = true)] If enabled (default), the background of the image will be removed using PhotoRoom's award-winning algorithm
+     * @param {String} [opts.scaling = 'fit')] Whether the subject should fit (default) or fill the output image If set to `fit`, the empty pixels will be transparent  Can only be provided if `imageUrl` or `imageFile` is provided
+     * @param {String} [opts.shadowMode] Shadow generation mode to use on the main image used by the API. If set to `ai.soft`, a soft shadow will be generated If set to `ai.hard`, a hard shadow will be generated If set to `ai.floating`, a floating shadow will be generated
      * @param {module:api/DefaultApi~v2EditPostCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
@@ -544,6 +542,10 @@ export default class DefaultApi {
       let pathParams = {
       };
       let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
         'background.color': opts['backgroundColor'],
         'background.imageUrl': opts['backgroundImageUrl'],
         'background.negativePrompt': opts['backgroundNegativePrompt'],
@@ -570,10 +572,6 @@ export default class DefaultApi {
         'removeBackground': opts['removeBackground'],
         'scaling': opts['scaling'],
         'shadow.mode': opts['shadowMode']
-      };
-      let headerParams = {
-      };
-      let formParams = {
       };
 
       let authNames = ['x-api-key'];
