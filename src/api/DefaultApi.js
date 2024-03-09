@@ -575,7 +575,7 @@ export default class DefaultApi {
       };
 
       let authNames = ['x-api-key'];
-      let contentTypes = [];
+      let contentTypes = ['multipart/form-data'];
       let accepts = ['image/png', 'application/json'];
       let returnType = File;
       let basePaths = ['https://beta-sdk.photoroom.com'];
